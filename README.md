@@ -113,47 +113,17 @@ composer run test
 
 ---
 
-## 📁 Estructura relevante
-
-```
-tasks-app/
-├── app/
-│   ├── Http/Controllers/     # Controladores de la aplicación
-│   ├── Models/               # Modelos Eloquent
-│   └── Policies/             # Políticas de autorización
-├── database/
-│   ├── migrations/           # Migraciones de base de datos
-│   └── seeders/              # Seeders
-├── resources/views/          # Vistas Blade
-├── routes/
-│   └── web.php               # Rutas web
-└── tests/                    # Pruebas automatizadas
-```
-
----
-
-## 🔐 Funcionalidades de seguridad implementadas
-
-- [x] Autenticación con Laravel Breeze / Auth
-- [x] Hashing seguro de contraseñas (bcrypt)
-- [x] Autenticación Multifactor (MFA/TOTP con Google Authenticator)
-- [x] Autorización con Policies y Gates
-- [x] Protección CAPTCHA en formularios críticos
-- [ ] Rate limiting personalizado *(próxima guía)*
-
----
-
 ## 📚 Guías de laboratorio
 
 | Guía | Tema |
 |------|------|
-| Guía 1 | Configuración segura del proyecto Laravel |
-| Guía 2 | Autenticación de usuarios |
-| Guía 3 | Hashing de contraseñas |
-| Guía 4 | Autenticación Multifactor (MFA/TOTP) |
-| Guía 5 | Autorización con Policies |
-| Guía 6 | Autorización con Gates |
-| Guía 7 | Protección CAPTCHA |
+| Guía 1 | Configuración Segura del Proyecto Base con Laravel |
+| Guía 2 | Validación y Sanitización de Entrada en Laravel |
+| Guía 3 | Registro y Login Seguro con Hashing de Contraseñas |
+| Guía 4 | Inicio de Sesión Seguro: Sesiones, Cookies y Protección CSRF |
+| Guía 5 | Autenticación Multifactor con Google Authenticator (TOTP) |
+| Guía 6 | Autorización con Roles, Policies y Gates en Laravel |
+| Guía 7 | Protección de Formularios con CAPTCHA |
 
 ---
 
