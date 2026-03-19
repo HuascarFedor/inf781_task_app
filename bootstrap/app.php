@@ -15,9 +15,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
         App\Providers\AppEnvironmentServiceProvider::class,
     ])
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+    ->withMiddleware(function (Middleware $middleware) {
+        // Middleware global: se ejecuta en TODAS las solicitudes web
+        $middleware->web(append: [
+            \App\Http\Middleware\SanitizeInput::class,
+        ]);
     })
+
     ->withExceptions(function (Exceptions $exceptions): void {
                 // Ocultar información sensible en producción
         $exceptions->render(function (\Throwable $e, Request $request) {
