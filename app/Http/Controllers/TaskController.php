@@ -75,11 +75,7 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
         $validated = $request->validated();
-        if (isset($validated['title'])) {
-            $validated['title'] = htmlspecialchars(
-                $validated['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8'
-            );
-        }
+       
         $task->update($validated);
         return redirect()->route('tasks.show', $task)
             ->with('success', 'Tarea actualizada correctamente.');
