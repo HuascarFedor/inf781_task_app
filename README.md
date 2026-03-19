@@ -1,58 +1,162 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📋 tasks-app
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyecto desarrollado para la materia **INF781 – Seguridad de Software**  
+Ingeniería Informática · Universidad Autónoma Tomás Frías (UATF)  
+Docente: M. Sc. Huáscar Fedor Gonzales Guzmán
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛡️ Descripción
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+`tasks-app` es una aplicación web de gestión de tareas construida con **Laravel 13**, orientada a la implementación progresiva de mecanismos de seguridad de software. A lo largo de las guías de laboratorio, se incorporan funcionalidades como autenticación segura, hashing de contraseñas, autenticación multifactor (MFA/TOTP), autorización basada en roles (Policies y Gates), y protección CAPTCHA.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🧰 Tecnologías
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Componente | Versión |
+|---|---|
+| PHP | ^8.3 |
+| Laravel | ^13.0 |
+| Base de datos | PostgreSQL |
+| Frontend | Blade + Vite |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## ⚙️ Instalación y configuración
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Clonar el repositorio
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/HuascarFedor/inf781_task_app.git
+cd inf781_task_app
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Instalar dependencias PHP
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Configurar el entorno
 
-## Code of Conduct
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Editar el archivo `.env` con los datos de conexión a PostgreSQL:
 
-## Security Vulnerabilities
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=tasks_db
+DB_USERNAME=postgres
+DB_PASSWORD=tu_contraseña
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Ejecutar migraciones
 
-## License
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Opcionalmente, con seeders:
+
+```bash
+php artisan db:seed
+```
+
+### 5. Instalar dependencias frontend y compilar assets
+
+```bash
+npm install
+npm run build
+```
+
+> Para desarrollo con hot reload: `npm run dev`
+
+### 6. Levantar el servidor
+
+```bash
+php artisan serve
+```
+
+La aplicación estará disponible en: `http://localhost:8000`
+
+---
+
+## 🚀 Inicio rápido (setup automático)
+
+El proyecto incluye un script de configuración completo:
+
+```bash
+composer run setup
+```
+
+Este comando ejecuta automáticamente: `composer install`, copia el `.env`, genera la clave, corre las migraciones, instala dependencias npm y compila los assets.
+
+---
+
+## 🧪 Pruebas
+
+```bash
+php artisan test
+```
+
+O mediante el script de Composer:
+
+```bash
+composer run test
+```
+
+---
+
+## 📁 Estructura relevante
+
+```
+tasks-app/
+├── app/
+│   ├── Http/Controllers/     # Controladores de la aplicación
+│   ├── Models/               # Modelos Eloquent
+│   └── Policies/             # Políticas de autorización
+├── database/
+│   ├── migrations/           # Migraciones de base de datos
+│   └── seeders/              # Seeders
+├── resources/views/          # Vistas Blade
+├── routes/
+│   └── web.php               # Rutas web
+└── tests/                    # Pruebas automatizadas
+```
+
+---
+
+## 🔐 Funcionalidades de seguridad implementadas
+
+- [x] Autenticación con Laravel Breeze / Auth
+- [x] Hashing seguro de contraseñas (bcrypt)
+- [x] Autenticación Multifactor (MFA/TOTP con Google Authenticator)
+- [x] Autorización con Policies y Gates
+- [x] Protección CAPTCHA en formularios críticos
+- [ ] Rate limiting personalizado *(próxima guía)*
+
+---
+
+## 📚 Guías de laboratorio
+
+| Guía | Tema |
+|------|------|
+| Guía 1 | Configuración segura del proyecto Laravel |
+| Guía 2 | Autenticación de usuarios |
+| Guía 3 | Hashing de contraseñas |
+| Guía 4 | Autenticación Multifactor (MFA/TOTP) |
+| Guía 5 | Autorización con Policies |
+| Guía 6 | Autorización con Gates |
+| Guía 7 | Protección CAPTCHA |
+
+---
+
+## 📄 Licencia
+
+Proyecto académico — Universidad Autónoma Tomás Frías · 2025
