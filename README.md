@@ -159,4 +159,4 @@ tasks-app/
 
 ## 📄 Licencia
 
-Proyecto académico — Universidad Autónoma Tomás Frías · 2025
+Proyecto académico — HUASCAR FEDOR GONZALES GUZMAN - 2026
