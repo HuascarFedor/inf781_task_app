@@ -30,13 +30,37 @@
     </style>
 </head>
 <body>
+    {{-- En el <header> del layout, reemplaza la sección de navegación: --}}
     <header style="border-bottom:3px solid #025043; padding-bottom:12px; margin-bottom:24px;">
-        <h1 style="color:#025043; margin:0;">Tasks App</h1>
-        <nav>
-            <a href="{{ route('tasks.index') }}">Lista de Tareas</a> |
-            <a href="{{ route('tasks.create') }}">Nueva Tarea</a>
-        </nav>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h1 style="color:#025043; margin:0;">
+                <a href="{{ route('tasks.index') }}" style="text-decoration:none;color:inherit;">
+                    Tasks App</a>
+            </h1>
+            <div>
+                @auth
+                    {{-- @auth solo muestra contenido a usuarios autenticados --}}
+                    <span style="color:#64748b; margin-right:12px;">
+                        Hola, {{ auth()->user()->name }}</span>
+                    <a href="{{ route('tasks.index') }}">Mis Tareas</a> |
+                    <a href="{{ route('tasks.create') }}">Nueva Tarea</a> |
+                    <form action="{{ route('logout') }}" method="POST"
+                        style="display:inline;">
+                        @csrf
+                        <button type="submit"
+                                style="background:none;border:none;color:#dc2626;
+                                    cursor:pointer;font-size:1rem;">
+                            Cerrar Sesión</button>
+                    </form>
+                @else
+                    {{-- @else muestra a visitantes no autenticados --}}
+                    <a href="{{ route('login') }}">Iniciar Sesión</a> |
+                    <a href="{{ route('register') }}">Registrarse</a>
+                @endauth
+            </div>
+        </div>
     </header>
+
 
     @if(session('success'))
         <div class="alert-success">{{ session('success') }}</div>

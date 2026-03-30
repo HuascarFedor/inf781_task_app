@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -16,7 +16,12 @@ class TaskController extends Controller
      */
     public function index(): View
     {
-        $tasks = Task::latest()->paginate(10);
+        // $tasks = Task::latest()->paginate(10);
+        // return view('tasks.index', compact('tasks'));
+
+        $tasks = Task::where('user_id', Auth::id())
+            ->latest()
+            ->paginate(10);
         return view('tasks.index', compact('tasks'));
     }
 
@@ -41,7 +46,8 @@ class TaskController extends Controller
         $validated = $request->validated();
 
         // user_id hardcodeado temporalmente (Guía 4 implementa Auth)
-        $validated['user_id'] = '00000000-0000-0000-0000-000000000001';
+        // $validated['user_id'] = '00000000-0000-0000-0000-000000000001';
+        $validated['user_id'] = Auth::id();
 
         $task = Task::create($validated);
 
