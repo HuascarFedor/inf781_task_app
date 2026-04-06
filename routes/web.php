@@ -6,6 +6,20 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SessionController;
+
+// En routes/web.php, dentro del grupo 'auth':
+Route::middleware('auth')->group(function () {
+    // ... rutas existentes de tasks ...
+
+    // Gestión de sesiones
+    Route::get('/sessions', [SessionController::class, 'index'])
+        ->name('sessions.index');
+    Route::delete('/sessions/others', [SessionController::class, 'destroyOthers'])
+        ->name('sessions.destroyOthers');
+    Route::delete('/sessions/{session}', [SessionController::class, 'destroy'])
+        ->name('sessions.destroy');
+});
 
 // ── Ruta raíz ──────────────────────────────────────────────────
 Route::get('/', function () {
